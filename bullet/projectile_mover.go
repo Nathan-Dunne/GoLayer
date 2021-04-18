@@ -7,23 +7,23 @@ import (
 	"github.com/veandco/go-sdl2/sdl"
 )
 
-type bulletMover struct {
+type ProjectileMover struct {
 	container *element.Element
 	speed     float64
 }
 
-func newBulletMover(container *element.Element, speed float64) *bulletMover {
-	return &bulletMover{
+func NewProjectileMover(container *element.Element, speed float64) *ProjectileMover {
+	return &ProjectileMover{
 		container: container,
 		speed:     speed,
 	}
 }
 
-func (mover *bulletMover) OnDraw(renderer *sdl.Renderer) error {
+func (mover *ProjectileMover) OnDraw(renderer *sdl.Renderer) error {
 	return nil
 }
 
-func (mover *bulletMover) OnUpdate() error {
+func (mover *ProjectileMover) OnUpdate() error {
 	cont := mover.container
 	cont.Position.X += mover.speed * math.Cos(cont.Rotation) * element.Delta
 	cont.Position.Y += mover.speed * math.Sin(cont.Rotation) * element.Delta
@@ -38,7 +38,7 @@ func (mover *bulletMover) OnUpdate() error {
 	return nil
 }
 
-func (mover *bulletMover) OnCollision(other *element.Element) error {
+func (mover *ProjectileMover) OnCollision(other *element.Element) error {
 	mover.container.Active = false
 	return nil
 }

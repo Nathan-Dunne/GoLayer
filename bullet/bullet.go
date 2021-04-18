@@ -17,13 +17,14 @@ func newBullet(renderer *sdl.Renderer) *element.Element {
 	sr := drawing.NewSpriteRenderer(bullet, renderer, "sprites/player_bullet.bmp")
 	bullet.AddComponent(sr)
 
-	mover := newBulletMover(bullet, bulletSpeed)
+	mover := NewProjectileMover(bullet, bulletSpeed)
 	bullet.AddComponent(mover)
 
 	col := element.Circle{
 		Center: bullet.Position,
 		Radius: 8,
 	}
+
 	bullet.Collisions = append(bullet.Collisions, col)
 
 	bullet.Tag = "bullet"
