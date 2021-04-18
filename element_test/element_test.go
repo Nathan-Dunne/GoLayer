@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Nathan-Dunne/GoLayer/bullet"
 	"github.com/Nathan-Dunne/GoLayer/element"
+	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -16,7 +16,7 @@ func setupElementWithProjectile(t *testing.T) (*element.Element, func(t *testing
 
 	elem := &element.Element{}
 	projectileSpeed := 10.00
-	mover := bullet.NewProjectileMover(elem, projectileSpeed)
+	mover := projectile.NewProjectileMover(elem, projectileSpeed)
 
 	elem.AddComponent(mover)
 
@@ -30,8 +30,8 @@ func TestElementCanGetProjectileComponentWhenHasProjectileComponent(t *testing.T
 	elem, teardownTestCase := setupElementWithProjectile(t)
 	defer teardownTestCase(t)
 
-	expected := reflect.TypeOf(&bullet.ProjectileMover{})
-	actual := reflect.TypeOf(elem.GetComponent(&bullet.ProjectileMover{}))
+	expected := reflect.TypeOf(&projectile.ProjectileMover{})
+	actual := reflect.TypeOf(elem.GetComponent(&projectile.ProjectileMover{}))
 
 	assert.Equal(t, expected, actual)
 }
