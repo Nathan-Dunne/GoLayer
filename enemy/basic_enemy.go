@@ -3,9 +3,9 @@ package enemy
 import (
 	"fmt"
 
-	"github.com/Nathan-Dunne/GoLayer/bullet"
 	"github.com/Nathan-Dunne/GoLayer/drawing"
 	"github.com/Nathan-Dunne/GoLayer/element"
+	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -36,7 +36,7 @@ func NewBasicEnemy(renderer *sdl.Renderer, position element.Vector) *element.Ele
 	an := drawing.NewAnimator(basicEnemy, sequences, "idle")
 	basicEnemy.AddComponent(an)
 
-	vtb := bullet.NewVulnerableToBullets(basicEnemy)
+	vtb := projectile.NewEffectedByProjectile(basicEnemy)
 	basicEnemy.AddComponent(vtb)
 
 	col := element.Circle{

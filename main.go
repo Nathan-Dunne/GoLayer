@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Nathan-Dunne/GoLayer/bullet"
 	"github.com/Nathan-Dunne/GoLayer/collisions"
 	"github.com/Nathan-Dunne/GoLayer/element"
 	"github.com/Nathan-Dunne/GoLayer/enemy"
 	"github.com/Nathan-Dunne/GoLayer/player"
+	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -53,7 +53,7 @@ func main() {
 		}
 	}
 
-	bullet.InitBulletPool(renderer)
+	projectile.InitProjectilePool(renderer)
 
 	for {
 

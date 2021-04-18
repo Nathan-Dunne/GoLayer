@@ -4,9 +4,9 @@ import (
 	"math"
 	"time"
 
-	"github.com/Nathan-Dunne/GoLayer/bullet"
 	"github.com/Nathan-Dunne/GoLayer/drawing"
 	"github.com/Nathan-Dunne/GoLayer/element"
+	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -92,7 +92,7 @@ func (mover *keyboardShooter) OnDraw(renderer *sdl.Renderer) error {
 }
 
 func (mover *keyboardShooter) Shoot(x, y float64) {
-	if bul, ok := bullet.BulletFromPool(); ok {
+	if bul, ok := projectile.ProjectileFromPool(); ok {
 		bul.Active = true
 		bul.Position.X = x
 		bul.Position.Y = y
