@@ -10,18 +10,18 @@ import (
 )
 
 const (
-	BasicEnemySize = 105
+	EnemySize = 105
 )
 
-func NewBasicEnemy(renderer *sdl.Renderer,
+func NewEnemy(renderer *sdl.Renderer,
 	position element.Vector,
 	idle_sprite_path string,
 	destroy_sprite_path string) *element.Element {
 
-	basicEnemy := &element.Element{}
+	enemy := &element.Element{}
 
-	basicEnemy.Position = position
-	basicEnemy.Rotation = 180
+	enemy.Position = position
+	enemy.Rotation = 180
 
 	idleSequence, err := drawing.NewSequence(idle_sprite_path, 5, true, renderer)
 	if err != nil {
@@ -37,19 +37,19 @@ func NewBasicEnemy(renderer *sdl.Renderer,
 		"destroy": destroySequence,
 	}
 
-	an := drawing.NewAnimator(basicEnemy, sequences, "idle")
-	basicEnemy.AddComponent(an)
+	an := drawing.NewAnimator(enemy, sequences, "idle")
+	enemy.AddComponent(an)
 
-	vtb := projectile.NewEffectedByProjectile(basicEnemy)
-	basicEnemy.AddComponent(vtb)
+	vtb := projectile.NewEffectedByProjectile(enemy)
+	enemy.AddComponent(vtb)
 
 	col := element.Circle{
-		Center: basicEnemy.Position,
+		Center: enemy.Position,
 		Radius: 38,
 	}
-	basicEnemy.Collisions = append(basicEnemy.Collisions, col)
+	enemy.Collisions = append(enemy.Collisions, col)
 
-	basicEnemy.Active = true
+	enemy.Active = true
 
-	return basicEnemy
+	return enemy
 }
