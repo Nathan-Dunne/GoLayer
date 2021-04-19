@@ -18,7 +18,7 @@ type SpriteRenderer struct {
 func NewSpriteRenderer(container *element.Element, renderer *sdl.Renderer, filename string) *SpriteRenderer {
 	tex, err := LoadTextureFromBMP(filename, renderer)
 	if err != nil {
-		fmt.Errorf("loading textures: %v", err)
+		panic(fmt.Errorf("loading texture: %v", err))
 	}
 
 	_, _, width, height, err := tex.Query()
