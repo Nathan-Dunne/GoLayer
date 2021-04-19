@@ -57,3 +57,28 @@ func TestPlayerCanGetSpriteRendererComponentWhenCreated(t *testing.T) {
 
 	assert.Equal(t, expected, actual)
 }
+
+func TestPlayerIsActiveWhenCreated(t *testing.T) {
+
+	player, teardownTestCase := setupPlayer(t)
+	defer teardownTestCase(t)
+
+	expected := true
+	actual := player.Active
+
+	assert.Equal(t, expected, actual)
+}
+
+func TestPlayerHasPositionWhenCreated(t *testing.T) {
+
+	player, teardownTestCase := setupPlayer(t)
+	defer teardownTestCase(t)
+
+	expected := element.Vector{
+		X: screenWidth / 2.0,
+		Y: screenHeight - playerSize/2.0,
+	}
+	actual := player.Position
+
+	assert.Equal(t, expected, actual)
+}
