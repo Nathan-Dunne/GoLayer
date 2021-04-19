@@ -43,12 +43,15 @@ func main() {
 	firstPlayer := player.NewPlayer(renderer)
 	element.Elements = append(element.Elements, firstPlayer)
 
+	idle_sprite_path := "sprites/basic_enemy/idle"
+	destroy_sprite_path := "sprites/basic_enemy/destroy"
+
 	for i := 0; i < 5; i++ {
 		for j := 0; j < 3; j++ {
 			x := (float64(i)/5)*screenWidth + (105 / 2)
 			y := float64(j)*105 + (enemy.BasicEnemySize / 2) // basicEnemySize needs access.
 
-			enemy := enemy.NewBasicEnemy(renderer, element.Vector{X: x, Y: y})
+			enemy := enemy.NewBasicEnemy(renderer, element.Vector{X: x, Y: y}, idle_sprite_path, destroy_sprite_path)
 			element.Elements = append(element.Elements, enemy)
 		}
 	}

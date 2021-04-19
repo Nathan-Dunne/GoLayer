@@ -13,17 +13,21 @@ const (
 	BasicEnemySize = 105
 )
 
-func NewBasicEnemy(renderer *sdl.Renderer, position element.Vector) *element.Element {
+func NewBasicEnemy(renderer *sdl.Renderer,
+	position element.Vector,
+	idle_sprite_path string,
+	destroy_sprite_path string) *element.Element {
+
 	basicEnemy := &element.Element{}
 
 	basicEnemy.Position = position
 	basicEnemy.Rotation = 180
 
-	idleSequence, err := drawing.NewSequence("sprites/basic_enemy/idle", 5, true, renderer)
+	idleSequence, err := drawing.NewSequence(idle_sprite_path, 5, true, renderer)
 	if err != nil {
 		panic(fmt.Errorf("creating idle sequence %v", err))
 	}
-	destroySequence, err := drawing.NewSequence("sprites/basic_enemy/destroy", 15, false, renderer)
+	destroySequence, err := drawing.NewSequence(destroy_sprite_path, 15, false, renderer)
 	if err != nil {
 		panic(fmt.Errorf("creating destroy sequence %v", err))
 	}

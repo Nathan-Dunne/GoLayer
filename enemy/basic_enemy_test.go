@@ -54,3 +54,13 @@ func TestBasicEnemyIsNotActiveWhenCollidesWithProjectile(t *testing.T) {
 
 	assert.Equal(t, false, basic_enemy.Active)
 }
+
+func TestBasicEnemyIsActiveWhenCreated(t *testing.T) {
+
+	renderer := test_utilities.SetupRenderer()
+	idle_sprite_path := "../sprites/basic_enemy/idle"
+	destroy_sprite_path := "../sprites/basic_enemy/destroy"
+	enemy := NewBasicEnemy(renderer, element.Vector{X: 0, Y: 0}, idle_sprite_path, destroy_sprite_path)
+
+	assert.Equal(t, true, enemy.Active)
+}
