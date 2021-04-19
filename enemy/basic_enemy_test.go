@@ -1,14 +1,13 @@
-package projectile
+package enemy
 
 import (
 	"fmt"
-	"reflect"
 	"testing"
 
 	"github.com/Nathan-Dunne/GoLayer/drawing"
 	"github.com/Nathan-Dunne/GoLayer/element"
+	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/Nathan-Dunne/GoLayer/test_utilities"
-	"github.com/stretchr/testify/assert"
 )
 
 func setupElementWithEffectedByProjectile(t *testing.T) (*element.Element, func(t *testing.T)) {
@@ -35,21 +34,10 @@ func setupElementWithEffectedByProjectile(t *testing.T) (*element.Element, func(
 	an := drawing.NewAnimator(elem, sequences, "idle")
 	elem.AddComponent(an)
 
-	effectedByProjectile := NewEffectedByProjectile(elem)
+	effectedByProjectile := projectile.NewEffectedByProjectile(elem)
 	elem.AddComponent(effectedByProjectile)
 
 	return elem, func(t *testing.T) {
 		fmt.Printf(" Teardown test case.\n")
 	}
-}
-
-func TestElementCanGetEffectedByProjectileComponentWhenHasEffectedByProjectileComponent(t *testing.T) {
-
-	elem, teardownTestCase := setupElementWithEffectedByProjectile(t)
-	defer teardownTestCase(t)
-
-	expected := reflect.TypeOf(&effectedByProjetile{})
-	actual := reflect.TypeOf(elem.GetComponent(&effectedByProjetile{}))
-
-	assert.Equal(t, expected, actual)
 }

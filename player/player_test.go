@@ -11,32 +11,32 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func setupElementWithKeyboardMover(t *testing.T) (*element.Element, func(t *testing.T)) {
+func setupPlayertWithKeyboardMover(t *testing.T) (*element.Element, func(t *testing.T)) {
 	fmt.Printf(" Setup test case.\n")
 	t.Log("setup test case")
 
-	elem := &element.Element{}
+	player := &element.Element{}
 
 	renderer := test_utilities.SetupRenderer()
 	filename := "../sprites/player.bmp"
-	sprite_renderer := drawing.NewSpriteRenderer(elem, renderer, filename)
-	elem.AddComponent(sprite_renderer)
+	sprite_renderer := drawing.NewSpriteRenderer(player, renderer, filename)
+	player.AddComponent(sprite_renderer)
 
-	keyboard_mover := NewKeyboardMover(elem, 5)
-	elem.AddComponent(keyboard_mover)
+	keyboard_mover := NewKeyboardMover(player, 5)
+	player.AddComponent(keyboard_mover)
 
-	return elem, func(t *testing.T) {
+	return player, func(t *testing.T) {
 		fmt.Printf(" Teardown test case.\n")
 	}
 }
 
-func TestElementCanGetKeyboardMoverComponentWhenHasKeyboardMoverComponent(t *testing.T) {
+func TestPlayerCanGetKeyboardMoverComponentWhenHasKeyboardMoverComponent(t *testing.T) {
 
-	elem, teardownTestCase := setupElementWithKeyboardMover(t)
+	player, teardownTestCase := setupPlayertWithKeyboardMover(t)
 	defer teardownTestCase(t)
 
 	expected := reflect.TypeOf(&KeyboardMover{})
-	actual := reflect.TypeOf(elem.GetComponent(&KeyboardMover{}))
+	actual := reflect.TypeOf(player.GetComponent(&KeyboardMover{}))
 
 	assert.Equal(t, expected, actual)
 }
