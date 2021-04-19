@@ -10,22 +10,22 @@ import (
 	"github.com/veandco/go-sdl2/sdl"
 )
 
-type KeyboardMover struct {
+type keyboardMover struct {
 	container *element.Element
 	speed     float64
 
 	sr *drawing.SpriteRenderer
 }
 
-func NewKeyboardMover(container *element.Element, speed float64) *KeyboardMover {
-	return &KeyboardMover{
+func NewKeyboardMover(container *element.Element, speed float64) *keyboardMover {
+	return &keyboardMover{
 		container: container,
 		speed:     speed,
 		sr:        container.GetComponent(&drawing.SpriteRenderer{}).(*drawing.SpriteRenderer),
 	}
 }
 
-func (mover *KeyboardMover) OnUpdate() error {
+func (mover *keyboardMover) OnUpdate() error {
 
 	// A slice of uint 8's. Each elememt in slice represents the state of a key.
 	// Index array using using scan codes. Scan codes are unique indexes for every keyboard key.
@@ -47,7 +47,7 @@ func (mover *KeyboardMover) OnUpdate() error {
 	return nil
 }
 
-func (mover *KeyboardMover) OnDraw(renderer *sdl.Renderer) error {
+func (mover *keyboardMover) OnDraw(renderer *sdl.Renderer) error {
 	return nil
 }
 
@@ -83,7 +83,7 @@ func (mover *keyboardShooter) OnUpdate() error {
 	return nil
 }
 
-func (mover *KeyboardMover) OnCollision(other *element.Element) error {
+func (mover *keyboardMover) OnCollision(other *element.Element) error {
 	return nil
 }
 
