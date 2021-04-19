@@ -5,4 +5,4 @@ Past the initial commit is unguided development towards continuing three goals:
       Learn about unit testing in a new context.
       Develop a video game using a component "composition over inheritance" architecture as opposed to the standard object-oriented approach.
   
-This aim of the video game created from this project is to fill layers with circles of colors to combine the layers together towards a tasked overall color.
+The aim is to get testing coverage across the project and then work towards a video game based around filling layers with circles of color to combine the layers together towards a tasked overall color influenced by the circles.

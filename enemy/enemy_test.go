@@ -49,11 +49,8 @@ func TestEnemySequenceDestroyWhenCollidesWithProjectile(t *testing.T) {
 // TestEnemyIsActiveWhenCreated creates an enemy and tests if it is found active upon creation.
 func TestEnemyIsActiveWhenCreated(t *testing.T) {
 
-	// Require a renderer and animations when creating an enemy to satisfy spriteRenderer and animator components.
-	renderer := test_utilities.SetupRenderer()
-	idle_sprite_path := "../sprites/enemy/idle"
-	destroy_sprite_path := "../sprites/enemy/destroy"
-	enemy := NewEnemy(renderer, element.Vector{X: 0, Y: 0}, idle_sprite_path, destroy_sprite_path)
+	enemy, teardownTestCase := setupEnemy(t)
+	defer teardownTestCase(t)
 
 	assert.Equal(t, true, enemy.Active)
 }
