@@ -17,7 +17,7 @@ const (
 )
 
 // Generic element defined by the components that are attached to it.
-func NewPlayer(renderer *sdl.Renderer) *element.Element {
+func NewPlayer(renderer *sdl.Renderer, sprite_path string) *element.Element {
 	player := &element.Element{}
 
 	player.Position = element.Vector{
@@ -26,7 +26,7 @@ func NewPlayer(renderer *sdl.Renderer) *element.Element {
 	}
 
 	player.Active = true
-	sr := drawing.NewSpriteRenderer(player, renderer, "sprites/player.bmp")
+	sr := drawing.NewSpriteRenderer(player, renderer, sprite_path)
 	player.AddComponent(sr)
 
 	mover := NewKeyboardMover(player, 5)

@@ -40,7 +40,8 @@ func main() {
 	}
 	defer renderer.Destroy()
 
-	firstPlayer := player.NewPlayer(renderer)
+	sprite_path := "sprites/player.bmp"
+	firstPlayer := player.NewPlayer(renderer, sprite_path)
 	element.Elements = append(element.Elements, firstPlayer)
 
 	idle_sprite_path := "sprites/enemy/idle"
