@@ -9,6 +9,7 @@ import (
 	"github.com/Nathan-Dunne/GoLayer/element"
 	"github.com/Nathan-Dunne/GoLayer/test_utilities"
 	"github.com/stretchr/testify/assert"
+	"github.com/veandco/go-sdl2/sdl"
 )
 
 func setupPlayer(t *testing.T) (*element.Element, func(t *testing.T)) {
@@ -23,6 +24,14 @@ func setupPlayer(t *testing.T) (*element.Element, func(t *testing.T)) {
 	// When finished, release and teardown.
 	return player, func(t *testing.T) {
 		fmt.Printf(" Teardown test case.\n")
+
+		// Reset any pressed keys on teardown.
+		keys := sdl.GetKeyboardState()
+		keys[sdl.SCANCODE_LEFT] = 0
+		keys[sdl.SCANCODE_RIGHT] = 0
+		keys[sdl.SCANCODE_DOWN] = 0
+		keys[sdl.SCANCODE_UP] = 0
+
 	}
 }
 
