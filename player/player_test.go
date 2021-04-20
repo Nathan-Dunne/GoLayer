@@ -18,6 +18,7 @@ func setupPlayer(t *testing.T) (*element.Element, func(t *testing.T)) {
 	renderer := test_utilities.SetupRenderer()
 	sprite_path := "../sprites/player.bmp"
 	player := NewPlayer(renderer, sprite_path)
+	element.Delta = 1
 
 	// When finished, release and teardown.
 	return player, func(t *testing.T) {
