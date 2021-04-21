@@ -17,6 +17,7 @@ type Circle struct {
 	Center                  element.Vector
 	Radius                  float64
 	red, green, blue, alpha uint8
+	lines                   []line
 }
 
 // NewCircle creates a circle with some radius based on the containing elements position.
@@ -100,9 +101,19 @@ func (circle *Circle) drawCircle(surface *sdl.Renderer, n_cx int, n_cy int, radi
 	}
 }
 
+type line struct {
+	x1                      int32
+	y1                      int32
+	x2                      int32
+	y2                      int32
+	red, green, blue, alpha uint8
+}
+
 // fillCircle draws a filled circle on the renderer given x, y, red, green, blue and alpha.
-func (circle *Circle) fillCircle(surface *sdl.Renderer, cx int, cy int, radius int, r uint8, g uint8, b uint8, a uint8) {
+func (circle *Circle) fillCircle(renderer *sdl.Renderer, cx int, cy int, radius int, r uint8, g uint8, b uint8, a uint8) {
 	dy := float64(1)
+
+	circle.lines = nil
 
 	for dy <= float64(radius) {
 		// This loop is unrolled a bit, only iterating through half of the
@@ -113,10 +124,30 @@ func (circle *Circle) fillCircle(surface *sdl.Renderer, cx int, cy int, radius i
 		// with a center and we need left/right coordinates.
 
 		dx := float64(math.Floor(math.Sqrt(((float64(2.0) * float64(radius) * dy) - (dy * dy)))))
-		surface.SetDrawColor(r, g, b, a)
+		renderer.SetDrawColor(r, g, b, a)
 
-		surface.DrawLine(int32(cx-int(dx)), int32(cy+int(dy)-radius), int32(cx+int(dx)), int32(cy+int(int(dy)-radius)))
-		surface.DrawLine(int32(cx-int(dx)), int32(cy-int(dy)+radius), int32(cx+int(dx)), int32(cy-int(dy)+radius))
+		renderer.DrawLine(int32(cx-int(dx)), int32(cy+int(dy)-radius), int32(cx+int(dx)), int32(cy+int(int(dy)-radius)))
+		/*
+			We need some way to store the color information at an application level. For this reference the start and end point of
+			lines are stored along with their r, g, b when drawn. We should be able to randomly look at any stored line and get the
+			correct color if the circle is filled in.
+		*/
+		circle.lines = append(circle.lines,
+			line{x1: int32(cx - int(dx)),
+				x2:  int32(cy + int(dy) - radius),
+				y1:  int32(cx + int(dx)),
+				y2:  int32(cy + int(int(dy)-radius)),
+				red: r, green: g, blue: b,
+				alpha: a})
+
+		renderer.DrawLine(int32(cx-int(dx)), int32(cy-int(dy)+radius), int32(cx+int(dx)), int32(cy-int(dy)+radius))
+		circle.lines = append(circle.lines,
+			line{x1: int32(cx - int(dx)),
+				x2:  int32(cy - int(dy) + radius),
+				y1:  int32(cx + int(dx)),
+				y2:  int32(cy - int(dy) + radius),
+				red: r, green: g, blue: b,
+				alpha: a})
 
 		dy += 1.0
 	}
