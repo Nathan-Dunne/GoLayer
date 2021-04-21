@@ -13,10 +13,10 @@ import (
 
 // Circle is made up of it's container element, a center, radius, color and alpha channel.
 type Circle struct {
-	container  *element.Element
-	Center     element.Vector
-	Radius     float64
-	r, g, b, a uint8
+	container               *element.Element
+	Center                  element.Vector
+	Radius                  float64
+	red, green, blue, alpha uint8
 }
 
 // NewCircle creates a circle with some radius based on the containing elements position.
@@ -25,14 +25,17 @@ func NewCircle(container *element.Element, radius float64, center element.Vector
 		container: container,
 		Radius:    radius,
 		Center:    center,
-		r:         r,
-		g:         g,
+		// 0x00 -> 0xFF
+		red:   r,
+		green: g,
+		blue:  b,
+		alpha: a,
 	}
 }
 
 // OnDraw satifies the element interface and draws itself on the screen with x, y, red, green, blue and alpha.
 func (circle *Circle) OnDraw(renderer *sdl.Renderer) error {
-	circle.fillCircle(renderer, int(circle.Center.X), int(circle.Center.Y), int(circle.Radius), 0xFF, 0x00, 0x00, 0xFF)
+	circle.fillCircle(renderer, int(circle.Center.X), int(circle.Center.Y), int(circle.Radius), circle.red, circle.green, circle.blue, circle.alpha)
 	return nil
 }
 
