@@ -39,15 +39,18 @@ func (mover *keyboardMover) OnUpdate() error {
 		if cont.Position.X-(mover.sr.Width/2) > 0 {
 			cont.Position.X -= mover.speed * element.Delta
 		}
-	} else if keys[sdl.SCANCODE_RIGHT] == 1 {
+	}
+	if keys[sdl.SCANCODE_RIGHT] == 1 {
 		if cont.Position.X+(mover.sr.Height/2) < 600 {
 			cont.Position.X += mover.speed * element.Delta
 		}
-	} else if keys[sdl.SCANCODE_UP] == 1 {
+	}
+	if keys[sdl.SCANCODE_UP] == 1 {
 		if cont.Position.Y-(mover.sr.Height/2) >= 0 {
 			cont.Position.Y -= mover.speed * element.Delta
 		}
-	} else if keys[sdl.SCANCODE_DOWN] == 1 {
+	}
+	if keys[sdl.SCANCODE_DOWN] == 1 {
 		if cont.Position.Y+(mover.sr.Height/2) <= 800 {
 			cont.Position.Y += mover.speed * element.Delta
 		}
