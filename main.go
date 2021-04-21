@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/Nathan-Dunne/GoLayer/collisions"
@@ -13,12 +14,14 @@ import (
 )
 
 const (
-	screenWidth          = 600
-	screenHeight         = 800
+	screenWidth          = 1920
+	screenHeight         = 1080
 	TargetTicksPerSecond = 60
 )
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
+
 	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil {
 		fmt.Println("Initialising SDL:", err)
 		return
@@ -44,15 +47,12 @@ func main() {
 	firstPlayer := player.NewPlayer(renderer, sprite_path)
 	element.Elements = append(element.Elements, firstPlayer)
 
-	idle_sprite_path := "sprites/enemy/idle"
-	destroy_sprite_path := "sprites/enemy/destroy"
-
-	for i := 0; i < 0; i++ {
-		for j := 0; j < 0; j++ {
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 10; j++ {
 			x := (float64(i)/5)*screenWidth + (enemy.EnemySize / 2)
 			y := float64(j)*enemy.EnemySize + (enemy.EnemySize / 2)
 
-			enemy := enemy.NewEnemy(renderer, element.Vector{X: x, Y: y}, idle_sprite_path, destroy_sprite_path)
+			enemy := enemy.NewEnemy(renderer, element.Vector{X: x, Y: y})
 			element.Elements = append(element.Elements, enemy)
 		}
 	}
