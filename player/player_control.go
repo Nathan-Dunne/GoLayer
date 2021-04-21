@@ -41,7 +41,7 @@ func (mover *keyboardMover) OnUpdate() error {
 		}
 	}
 	if keys[sdl.SCANCODE_RIGHT] == 1 {
-		if cont.Position.X+(mover.sr.Height/2) < 600 {
+		if cont.Position.X+(mover.sr.Height/2) < screenWidth {
 			cont.Position.X += mover.speed * element.Delta
 		}
 	}
@@ -51,7 +51,7 @@ func (mover *keyboardMover) OnUpdate() error {
 		}
 	}
 	if keys[sdl.SCANCODE_DOWN] == 1 {
-		if cont.Position.Y+(mover.sr.Height/2) <= 800 {
+		if cont.Position.Y+(mover.sr.Height/2) <= screenHeight {
 			cont.Position.Y += mover.speed * element.Delta
 		}
 	}

@@ -7,6 +7,11 @@ import (
 	"github.com/veandco/go-sdl2/sdl"
 )
 
+const (
+	screenWidth  = 1920
+	screenHeight = 1080
+)
+
 type ProjectileMover struct {
 	container *element.Element
 	speed     float64
@@ -28,8 +33,8 @@ func (mover *ProjectileMover) OnUpdate() error {
 	cont.Position.X += mover.speed * math.Cos(cont.Rotation) * element.Delta
 	cont.Position.Y += mover.speed * math.Sin(cont.Rotation) * element.Delta
 
-	if cont.Position.X > 600 || cont.Position.X < 0 ||
-		cont.Position.Y > 800 || cont.Position.Y < 0 {
+	if cont.Position.X > screenWidth || cont.Position.X < 0 ||
+		cont.Position.Y > screenHeight || cont.Position.Y < 0 {
 		cont.Active = false
 	}
 

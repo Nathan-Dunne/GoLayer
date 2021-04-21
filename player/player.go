@@ -11,8 +11,8 @@ import (
 const (
 	playerSpeed        = 0.05
 	playerSize         = 105
-	screenWidth        = 600
-	screenHeight       = 800
+	screenWidth        = 1920
+	screenHeight       = 1080
 	playerShotCooldown = time.Millisecond * 250
 )
 
