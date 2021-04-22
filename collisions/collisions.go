@@ -6,7 +6,7 @@ import (
 	"github.com/Nathan-Dunne/GoLayer/element"
 )
 
-func collides(c1, c2 element.Circle) bool {
+func collides(c1, c2 element.CollisionCircle) bool {
 	dist := math.Sqrt(math.Pow(c2.Center.X-c1.Center.X, 2) +
 		math.Pow(c2.Center.Y-c1.Center.Y, 2))
 

@@ -9,12 +9,12 @@ import (
 
 func TestCollisionCollidesGivenTwoPerfectlyOverlappingCircles(t *testing.T) {
 
-	circle_one := element.Circle{
+	circle_one := element.CollisionCircle{
 		Center: element.Vector{X: 0, Y: 0},
 		Radius: 10,
 	}
 
-	circle_two := element.Circle{
+	circle_two := element.CollisionCircle{
 		Center: element.Vector{X: 0, Y: 0},
 		Radius: 10,
 	}
@@ -28,12 +28,12 @@ func TestCollisionCollidesGivenTwoPerfectlyOverlappingCircles(t *testing.T) {
 
 func TestCollisionCollidesGivenTwoNonPerfectlyOverlappingCircles(t *testing.T) {
 
-	circle_one := element.Circle{
+	circle_one := element.CollisionCircle{
 		Center: element.Vector{X: 5, Y: 5},
 		Radius: 10,
 	}
 
-	circle_two := element.Circle{
+	circle_two := element.CollisionCircle{
 		Center: element.Vector{X: 0, Y: 0},
 		Radius: 10,
 	}
@@ -47,12 +47,12 @@ func TestCollisionCollidesGivenTwoNonPerfectlyOverlappingCircles(t *testing.T) {
 
 func TestCollisionDoesNotCollideGivenTwoNonOverlappingCircles(t *testing.T) {
 
-	circle_one := element.Circle{
+	circle_one := element.CollisionCircle{
 		Center: element.Vector{X: 100, Y: 100},
 		Radius: 10,
 	}
 
-	circle_two := element.Circle{
+	circle_two := element.CollisionCircle{
 		Center: element.Vector{X: 115, Y: 115},
 		Radius: 10,
 	}

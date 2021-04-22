@@ -13,7 +13,7 @@ type Vector struct {
 
 var Delta float64
 
-type Circle struct {
+type CollisionCircle struct {
 	Center Vector
 	Radius float64
 }
@@ -31,7 +31,7 @@ type Element struct {
 	Rotation   float64
 	Active     bool // If the element is active
 	Tag        string
-	Collisions []Circle
+	Collisions []CollisionCircle
 	components []component
 }
 

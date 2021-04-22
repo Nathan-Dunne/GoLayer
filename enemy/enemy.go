@@ -25,11 +25,11 @@ func NewEnemy(renderer *sdl.Renderer,
 	vtb := projectile.NewEffectedByProjectile(enemy)
 	enemy.AddComponent(vtb)
 
-	col := element.Circle{
+	collision_circle := element.CollisionCircle{
 		Center: enemy.Position,
 		Radius: 20,
 	}
-	enemy.Collisions = append(enemy.Collisions, col)
+	enemy.Collisions = append(enemy.Collisions, collision_circle)
 
 	// It should not matter which line in a circle is checked for color.
 	red := rand.Intn(255)
@@ -37,8 +37,8 @@ func NewEnemy(renderer *sdl.Renderer,
 	blue := rand.Intn(255)
 	alpha := uint8(0xFF)
 
-	circle := drawing.NewCircle(enemy, 20, enemy.Position, uint8(red), uint8(green), uint8(blue), alpha)
-	enemy.AddComponent(circle)
+	drawing_circle := drawing.NewCircle(enemy, 20, enemy.Position, uint8(red), uint8(green), uint8(blue), alpha)
+	enemy.AddComponent(drawing_circle)
 
 	enemy.Active = true
 

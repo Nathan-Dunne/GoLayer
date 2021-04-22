@@ -20,7 +20,7 @@ func newProjectile(renderer *sdl.Renderer) *element.Element {
 	projectileMover := NewProjectileMover(projectile, projectileSpeed)
 	projectile.AddComponent(projectileMover)
 
-	col := element.Circle{
+	col := element.CollisionCircle{
 		Center: projectile.Position,
 		Radius: 8,
 	}
