@@ -9,8 +9,15 @@ import (
 func newPaint(renderer *sdl.Renderer, paint_speed float64) *element.Element {
 	paint := &element.Element{}
 
-	spriteRenderer := drawing.NewSpriteRenderer(paint, renderer, "sprites/player_bullet.bmp")
-	paint.AddComponent(spriteRenderer)
+	red := uint8(0xFF)
+	green := uint8(0xFF)
+	blue := uint8(0xFF)
+	alpha := uint8(0xFF)
+
+	radius := 10.00
+
+	drawing_circle := drawing.NewCircle(paint, radius, element.Vector{X: 0, Y: 0}, uint8(red), uint8(green), uint8(blue), alpha)
+	paint.AddComponent(drawing_circle)
 
 	paint_mover := NewPaintMover(paint, paint_speed)
 	paint.AddComponent(paint_mover)

@@ -51,6 +51,14 @@ func (circle *Circle) OnUpdate() error {
 func (circle *Circle) OnCollision(other *element.Element) error {
 	if other.Tag == "paint" {
 		circle.Radius *= float64(1.1)
+
+		collision_circle := element.CollisionCircle{
+			Center: circle.Center,
+			Radius: circle.Radius,
+		}
+
+		circle.container.Collisions = nil
+		circle.container.Collisions = append(circle.container.Collisions, collision_circle)
 	}
 
 	return nil

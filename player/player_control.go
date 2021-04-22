@@ -84,9 +84,7 @@ func (mover *keyboardShooter) OnUpdate() error {
 
 	if keys[sdl.SCANCODE_SPACE] == 1 {
 		if time.Since(mover.LastShot) >= mover.Cooldown {
-			mover.Shoot(pos.X+25, pos.Y-20) // Y as increases moves down, not up in SDL coord system.
-			mover.Shoot(pos.X-25, pos.Y-20)
-
+			mover.Shoot(pos.X, pos.Y) // Y as increases moves down, not up in SDL coord system.
 			mover.LastShot = time.Now()
 
 		}
