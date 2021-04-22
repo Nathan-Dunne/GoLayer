@@ -7,7 +7,7 @@ import (
 
 	"github.com/Nathan-Dunne/GoLayer/collisions"
 	"github.com/Nathan-Dunne/GoLayer/element"
-	"github.com/Nathan-Dunne/GoLayer/enemy"
+	"github.com/Nathan-Dunne/GoLayer/paint_circle"
 	"github.com/Nathan-Dunne/GoLayer/player"
 	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/veandco/go-sdl2/sdl"
@@ -52,8 +52,8 @@ func main() {
 			x := float64(rand.Intn(ScreenWidth - 1))
 			y := float64(rand.Intn(ScreenHeight - 1))
 
-			enemy := enemy.NewEnemy(renderer, element.Vector{X: x, Y: y})
-			element.Elements = append(element.Elements, enemy)
+			paint_circle := paint_circle.NewPaintCircle(renderer, element.Vector{X: x, Y: y})
+			element.Elements = append(element.Elements, paint_circle)
 		}
 	}
 
