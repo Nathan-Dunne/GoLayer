@@ -71,7 +71,7 @@ func main() {
 			}
 		}
 
-		renderer.SetDrawColor(255, 255, 255, 255)
+		renderer.SetDrawColor(0, 0, 0, 255)
 		renderer.Clear()
 
 		for _, elem := range element.Elements {
