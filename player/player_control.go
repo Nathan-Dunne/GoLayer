@@ -6,7 +6,7 @@ import (
 
 	"github.com/Nathan-Dunne/GoLayer/drawing"
 	"github.com/Nathan-Dunne/GoLayer/element"
-	"github.com/Nathan-Dunne/GoLayer/projectile"
+	"github.com/Nathan-Dunne/GoLayer/paint"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -104,7 +104,7 @@ func (mover *keyboardShooter) OnDraw(renderer *sdl.Renderer) error {
 }
 
 func (mover *keyboardShooter) Shoot(x, y float64) {
-	if bul, ok := projectile.ProjectileFromPool(); ok {
+	if bul, ok := paint.PaintFromPool(); ok {
 		bul.Active = true
 		bul.Position.X = x
 		bul.Position.Y = y

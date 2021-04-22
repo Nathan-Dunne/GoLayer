@@ -5,7 +5,7 @@ import (
 
 	"github.com/Nathan-Dunne/GoLayer/drawing"
 	"github.com/Nathan-Dunne/GoLayer/element"
-	"github.com/Nathan-Dunne/GoLayer/projectile"
+	"github.com/Nathan-Dunne/GoLayer/paint"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -17,7 +17,7 @@ func NewPaintCircle(renderer *sdl.Renderer,
 	paint_circle.Position = position
 	paint_circle.Rotation = 180
 
-	vtb := projectile.NewEffectedByProjectile(paint_circle)
+	vtb := paint.NewEffectedByPaint(paint_circle)
 	paint_circle.AddComponent(vtb)
 
 	collision_circle := element.CollisionCircle{

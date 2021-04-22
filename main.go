@@ -7,9 +7,9 @@ import (
 
 	"github.com/Nathan-Dunne/GoLayer/collisions"
 	"github.com/Nathan-Dunne/GoLayer/element"
+	"github.com/Nathan-Dunne/GoLayer/paint"
 	"github.com/Nathan-Dunne/GoLayer/paint_circle"
 	"github.com/Nathan-Dunne/GoLayer/player"
-	"github.com/Nathan-Dunne/GoLayer/projectile"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
@@ -57,7 +57,7 @@ func main() {
 		}
 	}
 
-	projectile.InitProjectilePool(renderer)
+	paint.InitPaintPool(renderer)
 
 	for {
 

@@ -47,7 +47,7 @@ func (circle *Circle) OnUpdate() error {
 
 // OnCollision satifies the element interface and increases the radius by 10% when collided with.
 func (circle *Circle) OnCollision(other *element.Element) error {
-	if other.Tag == "projectile" {
+	if other.Tag == "paint" {
 		circle.Radius *= float64(1.1)
 	}
 
