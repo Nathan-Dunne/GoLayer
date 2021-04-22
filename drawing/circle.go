@@ -42,6 +42,8 @@ func (circle *Circle) OnDraw(renderer *sdl.Renderer) error {
 
 // OnUpdate satifies the element interface.
 func (circle *Circle) OnUpdate() error {
+
+	circle.Center = circle.container.Position
 	return nil
 }
 

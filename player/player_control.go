@@ -14,14 +14,14 @@ type keyboardMover struct {
 	container *element.Element
 	speed     float64
 
-	sr *drawing.SpriteRenderer
+	sr *drawing.Circle
 }
 
 func NewKeyboardMover(container *element.Element, speed float64) *keyboardMover {
 	return &keyboardMover{
 		container: container,
 		speed:     speed,
-		sr:        container.GetComponent(&drawing.SpriteRenderer{}).(*drawing.SpriteRenderer),
+		sr:        container.GetComponent(&drawing.Circle{}).(*drawing.Circle),
 	}
 }
 
@@ -36,22 +36,22 @@ func (mover *keyboardMover) OnUpdate() error {
 	// Coordinates represent center of player so we need to offset by half their size.
 	// X: 0, Y:0 is top left of coordinate system, Y increases down screen.
 	if keys[sdl.SCANCODE_LEFT] == 1 {
-		if cont.Position.X-(mover.sr.Width/2) > 0 {
+		if cont.Position.X-(mover.sr.Radius/2) > 0 {
 			cont.Position.X -= mover.speed * element.Delta
 		}
 	}
 	if keys[sdl.SCANCODE_RIGHT] == 1 {
-		if cont.Position.X+(mover.sr.Height/2) < screenWidth {
+		if cont.Position.X+(mover.sr.Radius/2) < screenWidth {
 			cont.Position.X += mover.speed * element.Delta
 		}
 	}
 	if keys[sdl.SCANCODE_UP] == 1 {
-		if cont.Position.Y-(mover.sr.Height/2) >= 0 {
+		if cont.Position.Y-(mover.sr.Radius/2) >= 0 {
 			cont.Position.Y -= mover.speed * element.Delta
 		}
 	}
 	if keys[sdl.SCANCODE_DOWN] == 1 {
-		if cont.Position.Y+(mover.sr.Height/2) <= screenHeight {
+		if cont.Position.Y+(mover.sr.Radius/2) <= screenHeight {
 			cont.Position.Y += mover.speed * element.Delta
 		}
 	}
