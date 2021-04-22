@@ -84,9 +84,13 @@ func (mover *keyboardShooter) OnUpdate() error {
 
 	if keys[sdl.SCANCODE_SPACE] == 1 {
 		if time.Since(mover.LastShot) >= mover.Cooldown {
-			mover.Shoot(pos.X, pos.Y) // Y as increases moves down, not up in SDL coord system.
-			mover.LastShot = time.Now()
+			mover.Shoot(pos.X, pos.Y-50, 270) // Up
+			mover.Shoot(pos.X, pos.Y+50, 90)  // Down
 
+			mover.Shoot(pos.X+50, pos.Y, 0)   // Right
+			mover.Shoot(pos.X-50, pos.Y, 180) // Left
+
+			mover.LastShot = time.Now()
 		}
 	}
 
@@ -101,14 +105,13 @@ func (mover *keyboardShooter) OnDraw(renderer *sdl.Renderer) error {
 	return nil
 }
 
-func (mover *keyboardShooter) Shoot(x, y float64) {
-	if bul, ok := paint.PaintFromPool(); ok {
-		bul.Active = true
-		bul.Position.X = x
-		bul.Position.Y = y
-		bul.Rotation = 270 * (math.Pi / 180)
+func (mover *keyboardShooter) Shoot(x, y, rotation float64) {
+	if paint_projectile, ok := paint.PaintFromPool(); ok {
+		paint_projectile.Active = true
+		paint_projectile.Position.X = x
+		paint_projectile.Position.Y = y
+		paint_projectile.Rotation = rotation * (math.Pi / 180)
 
-		mover.LastShot = time.Now()
 	}
 }
 

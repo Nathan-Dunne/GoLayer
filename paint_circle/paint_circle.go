@@ -13,9 +13,10 @@ func NewPaintCircle(renderer *sdl.Renderer,
 	position element.Vector) *element.Element {
 
 	paint_circle := &element.Element{}
+	paint_circle.Tag = "paint_circle"
 
 	paint_circle.Position = position
-	paint_circle.Rotation = 180
+	paint_circle.Rotation = 0
 
 	vtb := paint.NewEffectedByPaint(paint_circle)
 	paint_circle.AddComponent(vtb)
